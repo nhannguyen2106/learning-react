@@ -8,6 +8,7 @@
 body {
   width: 70vw;
   margin: 10vh auto;
+  border: 2px solid black;
 }
 
 .header {
