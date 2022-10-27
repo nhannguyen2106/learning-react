@@ -150,18 +150,16 @@ body {
 }
 
 .pagination a:first-child {
-  /* padding: 2px 5px; */
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
 
 .pagination a:last-child {
-  /* padding: 2px 5px; */
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
 .arrow-icon {
-  width: 50px;
+  width: 10px;
   color: #675bf1;
 }
