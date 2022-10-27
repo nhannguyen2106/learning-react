@@ -33,7 +33,7 @@ body {
 }
 
 .search-area input {
-  width: 800px;
+  width: 500px;
   border-radius: 10px 0 0 10px;
   border: 1px solid #fff;
   padding: 10px;
@@ -75,7 +75,7 @@ body {
 
 .todo {
   display: grid;
-  grid-template-columns: 250px 250px 250px 250px;
+  grid-template-columns: 200px 200px 200px 200px;
   gap: 20px;
   padding: 25px;
 }
@@ -149,18 +149,18 @@ body {
 }
 
 .pagination a:first-child {
-  padding: 2px 5px;
+  /* padding: 2px 5px; */
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
 
 .pagination a:last-child {
-  padding: 2px 5px;
+  /* padding: 2px 5px; */
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
 .arrow-icon {
-  width: 45px;
+  width: 50px;
   color: #675bf1;
 }
