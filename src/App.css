@@ -1,38 +1,166 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+body {
+  width: 70vw;
+  margin: 10vh auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #675bf1;
+  height: 80px;
+  padding: 8px;
+}
+
+.createTaskBtn a {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+  border: 1px solid #fff;
+  border-radius: 0 10px 10px 0;
+}
+
+.search-area {
+  display: flex;
+  gap: 10px;
+}
+
+.search-area input {
+  width: 800px;
+  border-radius: 10px 0 0 10px;
+  border: 1px solid #fff;
+  padding: 10px;
+  background-color: #675bf1;
+}
+
+.searchBtn {
+  background-color: #675bf1;
+  color: #fff;
+  padding: 10px;
+  border: 1px solid #fff;
+  border-radius: 0 10px 10px 0;
+}
+
+.main {
+  display: flex;
+}
+
+.sidebar {
+  flex-grow: 1;
+  background-color: #f88f14;
+  width: 200px;
+}
+
+.todoList {
+  flex-grow: 3;
+}
+
+.sidebar li {
+  font-size: 28px;
+  color: #fff;
+  height: 100%;
+  border-bottom: 2px solid #fff;
+}
+
+.list-items {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.todo {
+  display: grid;
+  grid-template-columns: 250px 250px 250px 250px;
+  gap: 20px;
+  padding: 25px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.todo-cards {
+  border: 2px solid #675bf1;
+  padding: 10px;
+  border-radius: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.todo-info {
+  border-bottom: 2px solid #675bf1;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+
+.todo-info .New {
+  color: #04be00;
+  font-weight: 700;
+}
+
+.todo-info .Doing {
+  color: #f88f14;
+  font-weight: 700;
+}
+
+.todo-info .Done {
+  color: #675bf1;
+  font-weight: 700;
+}
+
+.statusBtn {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.statusBtn button {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  border: 1px solid #675bf1;
+  border-radius: 15px;
+  width: 60%;
+  padding: 5px 20px;
+  margin-top: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.fa-angle-down {
+  font-size: 24px;
+  color: #675bf1;
+}
+
+.pagination-area {
+  text-align: center;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: #675bf1;
+  float: left;
+  padding: 2px 16px;
+  text-decoration: none;
+  border: 1px solid #675bf1;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.pagination a:first-child {
+  padding: 2px 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+  padding: 2px 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.arrow-icon {
+  width: 45px;
+  color: #675bf1;
 }
