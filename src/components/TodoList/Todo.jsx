@@ -1,27 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { FaChevronDown } from "react-icons/fa";
 
 Todo.propTypes = {};
 
 function Todo(props) {
+  const { id, title, creator, description, status } = props.item;
+
   return (
     <div className="todo-cards">
       <div className="todo-body">
         <div className="todo-info">
-          <h5 className="title">Title: {props.title}</h5>
-          <p className="author">Creator: {props.author}</p>
-          <p className={props.status}>Status: {props.status}</p>
+          <h5 className="title">Title: {title}</h5>
+          <p className="author">Creator: {creator}</p>
+          <p className={status}>Status: {status}</p>
         </div>
         <div className="todo-description">
           <h5 className="description">Description: </h5>
-          <p>{props.description}</p>
+          <p>{description}</p>
         </div>
+
         <div className="statusBtn">
-          <button>
-            {props.status}
+          <select onChange={(e) => props.handleChangeStatus(e, id)}>
+            <option value="New">New</option>
+            <option value="Doing">Doing</option>
+            <option value="Done">Done</option>
             <FaChevronDown className="arrow-icon" />
-          </button>
+          </select>
         </div>
       </div>
     </div>

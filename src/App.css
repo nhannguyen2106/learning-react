@@ -113,7 +113,7 @@ body {
   justify-content: center;
 }
 
-.statusBtn button {
+.statusBtn select {
   display: flex;
   justify-content: space-between;
   background-color: #fff;
