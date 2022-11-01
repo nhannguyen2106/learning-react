@@ -54,13 +54,8 @@ body {
 }
 
 .sidebar {
-  flex-grow: 1;
+  width: 20%;
   background-color: #f88f14;
-  width: 200px;
-}
-
-.todoList {
-  flex-grow: 3;
 }
 
 .sidebar li {
@@ -76,9 +71,9 @@ body {
 
 .todo {
   display: grid;
-  grid-template-columns: 200px 200px 200px 200px;
-  gap: 20px;
-  padding: 25px;
+  grid-template-columns: 22% 22% 22% 22%;
+  gap: 20px 4%;
+  padding: 20px;
 }
 
 .todo-cards {

@@ -5,7 +5,7 @@ import Todo from "./Todo";
 TodoList.propTypes = {};
 
 function TodoList(props) {
-  const todoData = [
+  const TodoData = [
     {
       id: 1,
       title: "Task 1",
@@ -92,35 +92,38 @@ function TodoList(props) {
     },
   ];
 
-  const [newTodoData, setNewTodoData] = useState(todoData);
+  // const [newTodoData, setNewTodoData] = useState(todoData);
 
-  const handleChangeStatus = (e, todoListID) => {
-    const isExistIndex = todoData.findIndex((item) => item.id === todoListID);
+  // const handleChangeStatus = (e, todoListID) => {
+  //   const isExistIndex = todoData.findIndex((item) => item.id === todoListID);
 
-    if (isExistIndex !== -1) {
-      newTodoData.splice(isExistIndex, 1, {
-        ...newTodoData[isExistIndex],
-        status: e.target.value,
-      });
+  //   if (isExistIndex !== -1) {
+  //     newTodoData.splice(isExistIndex, 1, {
+  //       ...newTodoData[isExistIndex],
+  //       status: e.target.value,
+  //     });
 
-      setNewTodoData([...newTodoData]);
-    }
-  };
+  //     setNewTodoData([...newTodoData]);
+  //   }
+  // };
 
   return (
     <>
-      {newTodoData.map((item, index) => (
-        <Todo
-          key={index}
-          // title={item.title}
-          // author={item.author}
-          // status={item.status}
-          // description={item.description}
-          // id={item.id}
-          item={item}
-          handleChangeStatus={handleChangeStatus}
-        />
-      ))}
+      <div className="todoList">
+        <div className="todo">
+          {TodoData.map((item, index) => (
+            <Todo
+              key={index}
+              // title={item.title}
+              // author={item.author}
+              // status={item.status}
+              // description={item.description}
+              // id={item.id}
+              item={item}
+            />
+          ))}
+        </div>
+      </div>
     </>
   );
 }
