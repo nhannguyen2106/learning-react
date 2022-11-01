@@ -5,7 +5,7 @@ import { FaChevronDown } from "react-icons/fa";
 Todo.propTypes = {};
 
 function Todo(props) {
-  const { title, creator, description, status } = props.item;
+  const { title, author, description, status } = props.item;
   const [defaultStatus, setStatus] = useState(status);
 
   const handleChangeStatus = (e) => {
@@ -17,7 +17,7 @@ function Todo(props) {
       <div className="todo-body">
         <div className="todo-info">
           <h5 className="title">Title: {title}</h5>
-          <p className="author">Creator: {creator}</p>
+          <p className="author">Creator: {author}</p>
           <p className={defaultStatus}>Status: {defaultStatus}</p>
         </div>
         <div className="todo-description">
