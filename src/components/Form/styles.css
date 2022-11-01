@@ -22,6 +22,10 @@
   margin-top: 10px;
 }
 
+.error {
+  color: red;
+}
+
 .saveBtn {
   background-color: #675bf1;
   color: #fff;
