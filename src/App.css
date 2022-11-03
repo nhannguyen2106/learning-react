@@ -1,4 +1,15 @@
-* {
+.container {
+  height: 100vh;
+  /* display: flex; */
+  /* position: relative; */
+  /* padding-top: 70px; */
+}
+
+.main {
+  display: flex;
+}
+
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -157,4 +168,4 @@ body {
 .arrow-icon {
   width: 10px;
   color: #675bf1;
-}
+} */

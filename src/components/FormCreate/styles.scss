@@ -1,0 +1,59 @@
+.form {
+  height: 80vh;
+  padding: 25px;
+
+  label {
+    display: inline-block;
+    width: 250px;
+    font-weight: bold;
+  }
+
+  button {
+    background-color: #675bf1;
+    width: 20%;
+    margin: auto;
+    margin-top: 15px;
+    color: #fff;
+    padding: 10px 20px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}
+
+// .addTaskForm {
+//   height: 80vh;
+//   padding: 25px;
+// }
+
+// .row-item {
+//   display: flex;
+//   margin-bottom: 10px;
+// }
+
+// .row-item label {
+//   width: 250px;
+//   font-weight: bold;
+// }
+
+// .row-item input {
+//   width: 400px;
+// }
+
+// .btn {
+//   text-align: center;
+//   margin-top: 10px;
+// }
+
+// .error {
+//   color: red;
+// }
+
+// .saveBtn {
+//   background-color: #675bf1;
+//   color: #fff;
+//   padding: 10px 20px;
+//   border: 1px solid #fff;
+//   border-radius: 10px;
+//   cursor: pointer;
+// }

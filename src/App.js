@@ -1,41 +1,27 @@
-import logo from "./logo.svg";
-import "./App.css";
-import CreateNewTask from "./components/Header/CreateNewTask";
-import Search from "./components/Header/Search";
-import SpecificTask from "./components/Sidebar/SpecificTask";
-import TodoList from "./components/TodoList/TodoList";
-import Pagination from "./components/Pagination/Pagination";
-import Form from "./components/Form";
+import Header from "./layouts/Header";
+import MainContent from "./layouts/MainContent";
+import Sidebar from "./layouts/Sidebar";
+
 import { useState } from "react";
+import FormCreate from "./components/FormCreate";
+import { Route, Routes } from "react-router-dom";
+
+import "./App.css";
 
 function App() {
-  const [isCreateNewTask, setCreateNewTask] = useState(false);
-
-  const handleCreateNewTask = (createNewTaskMode) => {
-    setCreateNewTask(createNewTaskMode);
-  };
   return (
-    <div className="container">
-      <div className="header">
-        <CreateNewTask onClick={() => handleCreateNewTask(true)} />
-        <Search />
-      </div>
-      <div className="main">
-        <div className="sidebar">
-          <SpecificTask />
-        </div>
-        <div className="content">
-          {isCreateNewTask ? (
-            <Form onClick={() => handleCreateNewTask(false)} />
-          ) : (
-            <TodoList />
-          )}
-          <div className="pagination-area">
-            <Pagination />
-          </div>
+    <>
+      <div className="container">
+        <Header />
+        <div className="main">
+          <Sidebar />
+          <Routes>
+            <Route path="/home" element={<MainContent />} />
+            <Route path="/add-new" element={<FormCreate />} />
+          </Routes>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
