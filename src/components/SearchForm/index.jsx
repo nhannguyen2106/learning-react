@@ -5,7 +5,7 @@ import InputText from "../common/InputText";
 const SearchForm = (props) => {
   return (
     <div>
-      <InputText />
+      <InputText inputPlaceholder={"Type something to search"} />
       <Button text={"Search"} />
     </div>
   );

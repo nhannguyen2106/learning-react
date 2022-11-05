@@ -1,11 +1,30 @@
 .form {
   height: 80vh;
   padding: 25px;
+  margin: auto;
 
-  label {
-    display: inline-block;
-    width: 250px;
+  &__item {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  &__item > label {
+    width: 150px;
     font-weight: bold;
+  }
+
+  &__item input {
+    width: 300px;
+    padding: 5px;
+  }
+
+  &__desc {
+    width: 60%;
+  }
+
+  &__inputArea p {
+    margin: 5px;
+    color: red;
   }
 
   button {

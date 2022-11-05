@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import { STATUS } from "../../constant";
 import { FaChevronDown } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 import "./styles.scss";
 
 const TodoItem = (props) => {
   const { title, author, status, desc } = props.todo;
-  const { idx, onHandleChange } = props;
-  const [newStatus, setNewStatus] = useState(status);
+  const { idx, onHandleChange, onHandleDelete } = props;
 
   const handleChangeStatus = (e) => {
     onHandleChange(idx, e.target.value);
+  };
+
+  const handleDeleteItem = (e) => {
+    onHandleDelete(idx);
+  };
+
+  const navigate = useNavigate();
+
+  const handleNavigateUpdate = (e) => {
+    navigate("/update");
   };
 
   return (
@@ -40,6 +50,14 @@ const TodoItem = (props) => {
           <option value={STATUS.DONE}>{STATUS.DONE}</option>
           <FaChevronDown className="arrow-icon" />
         </select>
+        <div className="card__buttonArea">
+          <button type="button" onClick={handleNavigateUpdate}>
+            Update
+          </button>
+          <button type="button" onClick={handleDeleteItem}>
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );

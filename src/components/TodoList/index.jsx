@@ -6,30 +6,15 @@ import TodoItem from "../TodoItem";
 import "./styles.scss";
 
 const TodoList = (props) => {
-  // const [newTodoData, setNewTodoData] = useState(todoData);
-
-  // const handleChangeStatus = (e, todoListID) => {
-  //   const isExistIndex = todoData.findIndex((item) => item.id === todoListID);
-
-  //   if (isExistIndex !== -1) {
-  //     newTodoData.splice(isExistIndex, 1, {
-  //       ...newTodoData[isExistIndex],
-  //       status: e.target.value,
-  //     });
-
-  //     setNewTodoData([...newTodoData]);
-  //   }
-  // };
-
   const newData = localStorage.getItem("todoList")
     ? JSON.parse(localStorage.getItem("todoList"))
     : [];
 
   const [todoList, setTodoList] = useState(newData);
 
+  // New todoList from current one
+  const newTodoList = [...todoList];
   const handleChange = (idx, newStatus) => {
-    // New todoList from current one
-    const newTodoList = [...todoList];
     // Update status for item by index
     newTodoList[idx] = {
       ...todoList[idx],
@@ -40,6 +25,12 @@ const TodoList = (props) => {
     setTodoList(newTodoList);
   };
 
+  const handleDelete = (idx) => {
+    newTodoList.splice(idx, 1);
+    setTodoList(newTodoList);
+    localStorage.setItem("todoList", JSON.stringify(newTodoList));
+  };
+
   return (
     <div className="todos">
       {todoList.map((item, index) => (
@@ -48,6 +39,7 @@ const TodoList = (props) => {
           key={index}
           idx={index}
           onHandleChange={handleChange}
+          onHandleDelete={handleDelete}
         />
       ))}
     </div>

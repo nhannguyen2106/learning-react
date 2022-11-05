@@ -3,7 +3,12 @@ import PropTypes from "prop-types";
 
 import "./styles.scss";
 
-const InputText = ({ inputValue, inputName, onHandleChange }) => {
+const InputText = ({
+  inputValue,
+  inputName,
+  inputPlaceholder,
+  onHandleChange,
+}) => {
   return (
     <input
       className="form__input"
@@ -11,6 +16,7 @@ const InputText = ({ inputValue, inputName, onHandleChange }) => {
       id="standard-required"
       name={inputName}
       value={inputValue}
+      placeholder={inputPlaceholder}
       onChange={onHandleChange}
       variant="standard"
     />
