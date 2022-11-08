@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { initData } from "../../data/todos";
 
 import TodoItem from "../TodoItem";
@@ -20,7 +21,6 @@ const TodoList = (props) => {
       ...todoList[idx],
       status: newStatus,
     };
-    console.log(newTodoList);
 
     setTodoList(newTodoList);
   };
@@ -33,15 +33,27 @@ const TodoList = (props) => {
 
   return (
     <div className="todos">
-      {todoList.map((item, index) => (
-        <TodoItem
-          todo={item}
-          key={index}
-          idx={index}
-          onHandleChange={handleChange}
-          onHandleDelete={handleDelete}
-        />
-      ))}
+      {!props.status
+        ? todoList.map((item, index) => (
+            <TodoItem
+              todo={item}
+              key={index}
+              idx={index}
+              onHandleChange={handleChange}
+              onHandleDelete={handleDelete}
+            />
+          ))
+        : todoList
+            .filter((todo) => todo.status === props.status)
+            .map((item, index) => (
+              <TodoItem
+                todo={item}
+                key={index}
+                idx={index}
+                onHandleChange={handleChange}
+                onHandleDelete={handleDelete}
+              />
+            ))}
     </div>
   );
 };

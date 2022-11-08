@@ -19,6 +19,7 @@ const FormCreate = (props) => {
     desc: "",
     status: STATUS.NEW,
   });
+
   const [errorDuplicate, setErrorDuplicate] = useState(false);
   const [errorValidate, setErrorValidate] = useState(false);
   const navigate = useNavigate();

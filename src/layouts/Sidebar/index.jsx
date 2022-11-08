@@ -2,21 +2,30 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import "./styles.scss";
+import { Link } from "react-router-dom";
 
 const Sidebar = (props) => {
   return (
     <div className="sidebar">
       <div className="sidebar__item">
-        <p>All Task</p>
+        <p>
+          <Link to="/home">All tasks</Link>
+        </p>
       </div>
       <div className="sidebar__item">
-        <p>New Task</p>
+        <p>
+          <Link to="/new-task">New Task</Link>
+        </p>
       </div>
       <div className="sidebar__item">
-        <p>Doing Task</p>
+        <p>
+          <Link to="/doing-task">Doing Task</Link>
+        </p>
       </div>
       <div className="sidebar__item">
-        <p>Done Task</p>
+        <p>
+          <Link to="/done-task">Done Task</Link>
+        </p>
       </div>
     </div>
   );

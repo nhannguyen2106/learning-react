@@ -3,11 +3,14 @@ import TodoList from "../../components/TodoList";
 import Pagination from "../../components/Pagination";
 
 import "./styles.scss";
+import Sidebar from "../Sidebar";
 
 const MainContent = (props) => {
+  console.log(props);
+  const { status } = props;
   return (
     <div className="main-containter">
-      <TodoList />
+      <TodoList status={status} />
       <Pagination />
     </div>
   );

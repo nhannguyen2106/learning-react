@@ -20,7 +20,8 @@ const TodoItem = (props) => {
   const navigate = useNavigate();
 
   const handleNavigateUpdate = (e) => {
-    navigate("/update");
+    navigate("/update/" + idx);
+    console.log(idx);
   };
 
   return (
