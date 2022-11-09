@@ -6,12 +6,14 @@ import SearchForm from "../../components/SearchForm";
 import "./styles.scss";
 
 const Header = (props) => {
+  const { setSearchValue } = props;
+
   return (
     <header className="header">
       <Link to="/add-new">
-        <Button text={"Create New Task"} />
+        <Button>Create New Task</Button>
       </Link>
-      <SearchForm />
+      <SearchForm setSearchValue={setSearchValue} />
     </header>
   );
 };

@@ -13,8 +13,15 @@ const TodoList = (props) => {
 
   const [todoList, setTodoList] = useState(newData);
 
-  // New todoList from current one
-  const newTodoList = [...todoList];
+  const newTodoList = [
+    ...todoList.filter(
+      (item) =>
+        item.title.includes(props.searchValue) ||
+        item.author.includes(props.searchValue) ||
+        item.desc.includes(props.searchValue) ||
+        item.status.includes(props.searchValue)
+    ),
+  ];
   const handleChange = (idx, newStatus) => {
     // Update status for item by index
     newTodoList[idx] = {
@@ -34,7 +41,7 @@ const TodoList = (props) => {
   return (
     <div className="todos">
       {!props.status
-        ? todoList.map((item, index) => (
+        ? newTodoList.map((item, index) => (
             <TodoItem
               todo={item}
               key={index}
@@ -43,7 +50,7 @@ const TodoList = (props) => {
               onHandleDelete={handleDelete}
             />
           ))
-        : todoList
+        : newTodoList
             .filter((todo) => todo.status === props.status)
             .map((item, index) => (
               <TodoItem

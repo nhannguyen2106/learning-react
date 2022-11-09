@@ -11,7 +11,7 @@ const FormUpdate = (props) => {
 
   const { itemIndex } = useParams();
 
-  const [errorDuplicate, setErrorDuplicate] = useState(false);
+  const [errorUpdateValidate, setErrorUpdateValidate] = useState(false);
   const [formUpdate, setFormUpdate] = useState({
     title: data[itemIndex].title,
     author: data[itemIndex].author,
@@ -22,23 +22,22 @@ const FormUpdate = (props) => {
   const handleChangeUpdateField = (e) => {
     setFormUpdate({
       ...formUpdate,
-      [e.target.name]: [e.target.value],
-    });
-  };
-
-  const isDuplicate = () => {
-    return data.some(function (item) {
-      return item.title === formUpdate.title;
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleUpdateTask = (e) => {
     e.preventDefault();
 
-    if (isDuplicate()) {
-      setErrorDuplicate(true);
+    if (
+      formUpdate.title.length == 0 ||
+      formUpdate.author.length == 0 ||
+      formUpdate.desc.length == 0
+    ) {
+      setErrorUpdateValidate(true);
       return;
     }
+
     data[itemIndex] = formUpdate;
 
     localStorage.setItem("todoList", JSON.stringify(data));
@@ -56,7 +55,11 @@ const FormUpdate = (props) => {
             value={formUpdate.title}
             onChange={handleChangeUpdateField}
           />
-          {errorDuplicate ? <p>Title is duplicate</p> : ""}
+          {errorUpdateValidate && formUpdate.title.length <= 0 ? (
+            <p>Title is required</p>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className="form__item">
@@ -68,6 +71,11 @@ const FormUpdate = (props) => {
             value={formUpdate.author}
             onChange={handleChangeUpdateField}
           />
+          {errorUpdateValidate && formUpdate.author.length <= 0 ? (
+            <p>Author is required</p>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className="form__item">
@@ -83,6 +91,11 @@ const FormUpdate = (props) => {
             value={formUpdate.desc}
             onChange={handleChangeUpdateField}
           />
+          {errorUpdateValidate && formUpdate.desc.length <= 0 ? (
+            <p>Description is required</p>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className="form__item">

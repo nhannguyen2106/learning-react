@@ -7,10 +7,10 @@ import Sidebar from "../Sidebar";
 
 const MainContent = (props) => {
   console.log(props);
-  const { status } = props;
+  const { status, searchValue } = props;
   return (
     <div className="main-containter">
-      <TodoList status={status} />
+      <TodoList status={status} searchValue={searchValue} />
       <Pagination />
     </div>
   );

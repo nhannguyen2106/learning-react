@@ -10,22 +10,33 @@ import FormUpdate from "./components/FormUpdate";
 import "./App.css";
 
 function App() {
+  const [searchValue, setSearchValue] = useState("");
   return (
     <>
       <div className="container">
-        <Header />
+        <Header setSearchValue={setSearchValue} />
         <div className="main">
           <Sidebar />
           <Routes>
-            <Route path="/home" element={<MainContent />} />
-            <Route path="/new-task" element={<MainContent status={"New"} />} />
+            <Route
+              path="/home"
+              element={<MainContent searchValue={searchValue} />}
+            />
+            <Route
+              path="/new-task"
+              element={<MainContent searchValue={searchValue} status={"New"} />}
+            />
             <Route
               path="/doing-task"
-              element={<MainContent status={"Doing"} />}
+              element={
+                <MainContent searchValue={searchValue} status={"Doing"} />
+              }
             />
             <Route
               path="/done-task"
-              element={<MainContent status={"Done"} />}
+              element={
+                <MainContent searchValue={searchValue} status={"Done"} />
+              }
             />
             <Route path="/add-new" element={<FormCreate />} />
             <Route path="/update/:itemIndex" element={<FormUpdate />} />

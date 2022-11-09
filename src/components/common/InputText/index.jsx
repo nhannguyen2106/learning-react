@@ -7,7 +7,8 @@ const InputText = ({
   inputValue,
   inputName,
   inputPlaceholder,
-  onHandleChange,
+  onChange,
+  onKeyDown,
 }) => {
   return (
     <input
@@ -17,7 +18,8 @@ const InputText = ({
       name={inputName}
       value={inputValue}
       placeholder={inputPlaceholder}
-      onChange={onHandleChange}
+      onChange={onChange}
+      onKeyDown={onKeyDown}
       variant="standard"
     />
   );
