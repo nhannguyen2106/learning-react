@@ -39,7 +39,7 @@ function App() {
               }
             />
             <Route path="/add-new" element={<FormCreate />} />
-            <Route path="/update/:itemIndex" element={<FormUpdate />} />
+            <Route path="/update/:itemId" element={<FormUpdate />} />
           </Routes>
         </div>
       </div>

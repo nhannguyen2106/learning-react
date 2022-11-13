@@ -1,24 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "../FormCreate/styles.scss";
-import { useNavigate, useParams } from "react-router-dom";
-import { STATUS } from "../../constant";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import todoApis from "../../apis/todoApis";
+import { STATUS, STATUS_CODE } from "../../constants";
 
 const FormUpdate = (props) => {
-  const data = localStorage.getItem("todoList")
-    ? JSON.parse(localStorage.getItem("todoList"))
-    : [];
+  // const data = localStorage.getItem("todoList")
+  //   ? JSON.parse(localStorage.getItem("todoList"))
+  //   : [];
 
-  const { itemIndex } = useParams();
+  const { itemId } = useParams();
+  const todo = [];
 
   const [errorUpdateValidate, setErrorUpdateValidate] = useState(false);
   const [formUpdate, setFormUpdate] = useState({
-    title: data[itemIndex].title,
-    author: data[itemIndex].author,
-    desc: data[itemIndex].desc,
-    status: data[itemIndex].status,
+    id: "",
+    title: "",
+    author: "",
+    desc: "",
+    status: "",
   });
+
   const navigate = useNavigate();
+
   const handleChangeUpdateField = (e) => {
     setFormUpdate({
       ...formUpdate,
@@ -26,7 +31,7 @@ const FormUpdate = (props) => {
     });
   };
 
-  const handleUpdateTask = (e) => {
+  const handleUpdateTask = async (e) => {
     e.preventDefault();
 
     if (
@@ -38,11 +43,37 @@ const FormUpdate = (props) => {
       return;
     }
 
-    data[itemIndex] = formUpdate;
+    // data[itemId] = formUpdate;
 
-    localStorage.setItem("todoList", JSON.stringify(data));
-    navigate("/home");
+    // localStorage.setItem("todoList", JSON.stringify(data));
+    // navigate("/home");
+
+    // Handle edit todo
+    if (formUpdate === todo) {
+      alert("Please change before updating!");
+    } else {
+      const response = await todoApis.update(formUpdate);
+
+      // Check status for post api
+      if (response.status === STATUS_CODE.OK) {
+        alert("Congratulations!! Updated successfully.");
+        // Go back todo list
+        navigate("/home");
+      } else {
+        alert("Sorry!! Please try again.");
+        console.log(response.status);
+      }
+    }
   };
+
+  const getItemData = async (itemId) => {
+    const response = await todoApis.getItem(itemId);
+    setFormUpdate(response.data);
+  };
+
+  useEffect(() => {
+    getItemData(itemId);
+  }, []);
 
   return (
     <form className="form" onSubmit={handleUpdateTask}>

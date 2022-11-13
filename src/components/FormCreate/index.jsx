@@ -1,47 +1,68 @@
 import React from "react";
 import { TextareaAutosize } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import { STATUS } from "../../constant";
+import { STATUS } from "../../constants";
 import InputText from "../common/InputText";
 import { useNavigate } from "react-router-dom";
+import todoApis from "../../apis/todoApis";
+import { STATUS_CODE } from "../../constants";
 
 import "./styles.scss";
 
 const FormCreate = (props) => {
-  const todoList = [];
-
-  const [formValue, setFormValue] = useState({
+  const defaultValues = {
     id: uuidv4(),
     title: "",
     author: "",
     desc: "",
     status: STATUS.NEW,
-  });
+  };
+
+  const [formValues, setFormValues] = useState(defaultValues);
+  const [data, setData] = useState([]);
 
   const [errorDuplicate, setErrorDuplicate] = useState(false);
   const [errorValidate, setErrorValidate] = useState(false);
   const navigate = useNavigate();
 
-  const data = localStorage.getItem("todoList")
-    ? JSON.parse(localStorage.getItem("todoList"))
-    : [];
+  // const data = localStorage.getItem("todoList")
+  //   ? JSON.parse(localStorage.getItem("todoList"))
+  //   : [];
+
+  const fetchData = async () => {
+    // setIsLoadData(true);
+    const response = await todoApis.getAll();
+    console.log(response);
+
+    // Check status for post api
+    if (response.status === STATUS_CODE.OK) {
+      setData(response.data);
+    } else {
+      alert("Get list failed.");
+      console.log(response.status);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleChangeField = (e) => {
-    setFormValue({
-      ...formValue,
+    setFormValues({
+      ...formValues,
       [e.target.name]: e.target.value,
     });
   };
 
   const isDuplicate = () => {
     return data.some(function (item) {
-      return item.title === formValue.title;
+      return item.title === formValues.title;
     });
   };
 
-  const handleCreateTask = (e) => {
+  const handleCreateTask = async (e) => {
     e.preventDefault();
     if (isDuplicate()) {
       setErrorDuplicate(true);
@@ -49,19 +70,33 @@ const FormCreate = (props) => {
     }
 
     if (
-      formValue.title.length == 0 ||
-      formValue.author.length == 0 ||
-      formValue.desc.length == 0
+      formValues.title.length == 0 ||
+      formValues.author.length == 0 ||
+      formValues.desc.length == 0
     ) {
       setErrorValidate(true);
       return;
     }
 
     // Get all values
-    data.push(formValue);
+    // data.push(formValue);
 
-    localStorage.setItem("todoList", JSON.stringify(data));
-    navigate("/home");
+    // localStorage.setItem("todoList", JSON.stringify(data));
+
+    // Handle save new todo to list
+
+    const response = await todoApis.add(formValues);
+    // Check status for post api
+    if (response.status === STATUS_CODE.CREATED) {
+      alert("Congratulations!! Added successfully.");
+      navigate("/home");
+    } else {
+      alert("Sorry!! Please try again.");
+      console.log(response.status);
+    }
+
+    // reset form values
+    setFormValues(defaultValues);
   };
 
   return (
@@ -72,11 +107,11 @@ const FormCreate = (props) => {
           <input
             type="text"
             name="title"
-            value={formValue.title}
+            value={formValues.title}
             onChange={handleChangeField}
           />
           {errorDuplicate ? <p>Title is duplicate</p> : ""}
-          {errorValidate && formValue.title.length <= 0 ? (
+          {errorValidate && formValues.title.length <= 0 ? (
             <p>Title is required</p>
           ) : (
             ""
@@ -89,10 +124,10 @@ const FormCreate = (props) => {
           <input
             type="text"
             name="author"
-            value={formValue.author}
+            value={formValues.author}
             onChange={handleChangeField}
           />
-          {errorValidate && formValue.author.length <= 0 ? (
+          {errorValidate && formValues.author.length <= 0 ? (
             <p>Author is required</p>
           ) : (
             ""
@@ -109,10 +144,10 @@ const FormCreate = (props) => {
             name="desc"
             placeholder="Minimum 3 rows"
             style={{ width: 300 }}
-            value={formValue.desc}
+            value={formValues.desc}
             onChange={handleChangeField}
           />
-          {errorValidate && formValue.desc.length <= 0 ? (
+          {errorValidate && formValues.desc.length <= 0 ? (
             <p>Description is required</p>
           ) : (
             ""
@@ -126,7 +161,7 @@ const FormCreate = (props) => {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           name="status"
-          value={formValue.status}
+          value={formValues.status}
           style={{ padding: 5, width: 100 }}
           label="Status"
           onChange={handleChangeField}

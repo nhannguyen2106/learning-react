@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../common/Button";
 import InputText from "../common/InputText";
 
 const SearchForm = ({ setSearchValue }) => {
-  const [searchInput, setSearchInput] = useState();
+  const [searchInput, setSearchInput] = useState("");
+  const [searchBtnPressed, setSearchBtnPressed] = useState();
   const handleSearch = () => {
-    setSearchValue(searchInput);
+    setSearchBtnPressed(!searchBtnPressed);
   };
 
   const handleKeyDown = (e) => {
@@ -13,6 +14,10 @@ const SearchForm = ({ setSearchValue }) => {
       handleSearch();
     }
   };
+
+  useEffect(() => {
+    setSearchValue(searchInput);
+  }, [searchBtnPressed]);
 
   return (
     <div>

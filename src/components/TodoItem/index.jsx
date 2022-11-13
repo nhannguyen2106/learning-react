@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { STATUS } from "../../constant";
+import { STATUS } from "../../constants";
 import { FaChevronDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -7,21 +7,20 @@ import "./styles.scss";
 
 const TodoItem = (props) => {
   const { title, author, status, desc } = props.todo;
-  const { idx, onHandleChange, onHandleDelete } = props;
+  const { idx, id, onHandleChange, onHandleDelete } = props;
 
   const handleChangeStatus = (e) => {
     onHandleChange(idx, e.target.value);
   };
 
-  const handleDeleteItem = (e) => {
-    onHandleDelete(idx);
+  const handleDeleteItem = async (e) => {
+    onHandleDelete(id);
   };
 
   const navigate = useNavigate();
 
   const handleNavigateUpdate = (e) => {
-    navigate("/update/" + idx);
-    console.log(idx);
+    navigate("/update/" + id);
   };
 
   return (

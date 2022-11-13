@@ -1,4 +1,4 @@
-import { STATUS } from "../constant";
+import { STATUS } from "../constants";
 
 export const initData = [
   {
