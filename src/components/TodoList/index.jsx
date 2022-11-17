@@ -43,12 +43,12 @@ const TodoList = (props) => {
     //   status: newStatus,
     // };
 
-    const updatedOne = {
+    const updatedTodoStatus = {
       ...todoList[idx],
       status: newStatus,
     };
 
-    const respone = await todoApis.update(updatedOne);
+    const respone = await todoApis.update(updatedTodoStatus);
 
     if (respone.status === STATUS_CODE.OK) {
       setIsLoadData(false);
